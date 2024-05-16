@@ -86,6 +86,26 @@ class BinarySearchTree:
             node = node.right_child
         return node
 
+    def tree_successor(self, node: Node):
+        if node.right_child is not None:
+            return self.tree_minimum(node.right_child)
+        y = node.parent
+
+        while y is not None and node is y.right_child:
+            node = y
+            y = node.parent
+        return y
+
+    def tree_predecessor(self, node: Node):
+        if node.left_child is not None:
+            return self.tree_maximum(node.left_child)
+        y = node.parent
+
+        while y is not None and node is y.left_child:
+            node = y
+            y = node.parent
+        return y
+
 
 if __name__ == '__main__':
     pass
