@@ -86,7 +86,10 @@ class BinarySearchTree:
             node = node.right_child
         return node
 
-    def tree_successor(self, node: Node):
+    def tree_successor(self, node: Node) -> Node:
+        """
+        Find the next node of the parameter node
+        """
         if node.right_child is not None:
             return self.tree_minimum(node.right_child)
         y = node.parent
@@ -96,7 +99,10 @@ class BinarySearchTree:
             y = node.parent
         return y
 
-    def tree_predecessor(self, node: Node):
+    def tree_predecessor(self, node: Node) -> Node:
+        """
+        Find the previous node of the parameter node
+        """
         if node.left_child is not None:
             return self.tree_maximum(node.left_child)
         y = node.parent
