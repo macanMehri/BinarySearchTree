@@ -53,6 +53,17 @@ class BinarySearchTree:
         else:
             y.right_child = z
 
+    def inorder_tree_walk(self, node: Node) -> None:
+        """
+        Inorder tree walk is a tree walk with this order:
+        Left child - Root - Right child
+        Due to the nature of the binary search tree (BST) with this tree walk the output is in order
+        """
+        if node is not None:
+            self.inorder_tree_walk(node=node.left_child)
+            print(node)
+            self.inorder_tree_walk(node=node.right_child)
+
 
 if __name__ == '__main__':
     pass
