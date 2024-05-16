@@ -30,6 +30,19 @@ class MaxHeap:
         """
         return 2 * i + 2
 
+    @staticmethod
+    def parent(i: int) -> int:
+        """
+        This method returns the index of the parent of i.
+        i: Is given index of a node in max heap tree.
+        return: Index of parent.
+        """
+        # Because our array indexes are starting with 0 we need to add a unit to it
+        # Then after division subtract one unit from it
+        i += 1
+        i //= 2
+        return i - 1
+
 
 if __name__ == '__main__':
     pass
