@@ -64,6 +64,28 @@ class BinarySearchTree:
             print(node)
             self.inorder_tree_walk(node=node.right_child)
 
+    @staticmethod
+    def tree_minimum(node: Node) -> Node:
+        """
+        Find the node with the minimum data in the tree.
+        It should be the leftest node in the tree due to the nature of the binary search tree (BST).
+        Parameter node should be the root of the subtree you want to search in.
+        """
+        while node.left_child is not None:
+            node = node.left_child
+        return node
+
+    @staticmethod
+    def tree_maximum(node: Node) -> Node:
+        """
+        Find the node with the maximum data in the tree.
+        It should be the rightest node in the tree due to the nature of the binary search tree (BST).
+        Parameter node should be the root of the subtree you want to search in.
+        """
+        while node.right_child is not None:
+            node = node.right_child
+        return node
+
 
 if __name__ == '__main__':
     pass
