@@ -13,13 +13,21 @@ class MaxHeap:
         self.heap_size = len(heap_nodes)
 
     @staticmethod
-    def left_child(i):
-        """This method returns the index of the left child of i"""
+    def left_child(i: int) -> int:
+        """
+        This method returns the index of the left child of i.
+        i: Is given index of a node in max heap tree.
+        return: Index of left child.
+        """
         return 2 * i + 1
 
     @staticmethod
-    def right_child(i):
-        """This method returns the index of the right child of i"""
+    def right_child(i: int) -> int:
+        """
+        This method returns the index of the right child of i.
+        i: Is given index of a node in max heap tree.
+        return: Index of right child.
+        """
         return 2 * i + 2
 
 
