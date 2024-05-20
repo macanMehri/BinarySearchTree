@@ -112,6 +112,33 @@ class BinarySearchTree:
             y = node.parent
         return y
 
+    def transplant(self, u: Node, v: Node):
+        """Exchanges two subtrees"""
+        if u.parent is None:
+            self.root = v
+        elif u is u.parent.left_child:
+            u.parent.left_child = v
+        else:
+            u.parent.right_child = v
+        if v is not None:
+            v.parent = u.parent
+
+    def delete(self, node: Node) -> None:
+        """Delete the node from the tree"""
+        if node.left_child is None:
+            self.transplant(node, node.right_child)
+        elif node.right_child is None:
+            self.transplant(node, node.left_child)
+        else:
+            y = self.tree_minimum(node=node.right_child)
+            if y.parent is not node:
+                self.transplant(y, y.right_child)
+                y.right_child = node.right_child
+                y.right_child.parent = y
+            self.transplant(node, y)
+            y.left_child = node.left_child
+            y.left_child.parent = y
+
 
 if __name__ == '__main__':
     pass
