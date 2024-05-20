@@ -3,7 +3,7 @@ from typing import Any
 
 class Node:
     """A class for BST tree nodes"""
-    def __init__(self, data: Any, left_child, right_child, parent):
+    def __init__(self, data: Any, left_child=None, right_child=None, parent=None):
         self.data = data
         self.left_child = left_child
         self.right_child = right_child
@@ -21,13 +21,25 @@ class BinarySearchTree:
     Uses linked lists to store data.
     Use this data structure for searching or sorting.
     """
-    def __init__(self, root_data: Any):
-        self.root = Node(
-            data=root_data,
-            left_child=None,
-            right_child=None,
-            parent=None,
-        )
+    def __init__(self, root: Node):
+        self.root = root
+
+    def __str__(self):
+        pass
+
+    def __add__(self, other):
+        """
+        When you add two binary search trees this would happen.
+        First the new tree is the first one then each level we add the root of the other tree.
+        Then we delete the others root until the other tree is finished
+        """
+        first_tree = self
+        second_tree = other
+
+        while second_tree.root is not None:
+            first_tree.insert_node(second_tree.root.data)
+            second_tree.delete(second_tree.root)
+        return first_tree
 
     def insert_node(self, data: Any) -> None:
         """Insert new node to the tree in the right place"""
@@ -116,7 +128,7 @@ class BinarySearchTree:
         """Exchanges two subtrees"""
         if u.parent is None:
             self.root = v
-        elif u is u.parent.left_child:
+        elif u == u.parent.left_child:
             u.parent.left_child = v
         else:
             u.parent.right_child = v
@@ -125,13 +137,15 @@ class BinarySearchTree:
 
     def delete(self, node: Node) -> None:
         """Delete the node from the tree"""
+        if node is None:
+            return
         if node.left_child is None:
             self.transplant(node, node.right_child)
         elif node.right_child is None:
             self.transplant(node, node.left_child)
         else:
             y = self.tree_minimum(node=node.right_child)
-            if y.parent is not node:
+            if y.parent != node:
                 self.transplant(y, y.right_child)
                 y.right_child = node.right_child
                 y.right_child.parent = y
