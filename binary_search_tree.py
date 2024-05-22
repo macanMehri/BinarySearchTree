@@ -153,6 +153,14 @@ class BinarySearchTree:
             y.left_child = node.left_child
             y.left_child.parent = y
 
+    def reset_bst(self) -> None:
+        """
+        This function reset the binary search tree by reset the root
+        Make roots left and right child none
+        """
+        self.root.left_child = None
+        self.root.right_child = None
+
 
 if __name__ == '__main__':
     pass
