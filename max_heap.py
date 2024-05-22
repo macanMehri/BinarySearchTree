@@ -12,6 +12,12 @@ class MaxHeap:
         self.heap_nodes = heap_nodes
         self.heap_size = len(heap_nodes)
 
+    def __str__(self):
+        nodes = ''
+        for i in self.heap_nodes:
+            nodes += str(i) + '-'
+        return nodes
+
     @staticmethod
     def left_child(i: int) -> int:
         """
@@ -42,6 +48,29 @@ class MaxHeap:
         i += 1
         i //= 2
         return i - 1
+
+    def max_heapify(self, i: int):
+        """
+        This function converts a heap tree to maxheap tree in subtree of i
+        """
+        left = self.left_child(i=i)
+        right = self.right_child(i=i)
+        if left < self.heap_size and self.heap_nodes[left] > self.heap_nodes[i]:
+            largest = left
+        else:
+            largest = i
+        if right < self.heap_size and self.heap_nodes[right] > self.heap_nodes[largest]:
+            largest = right
+        if largest != i:
+            self.heap_nodes[i], self.heap_nodes[largest] = self.heap_nodes[largest], self.heap_nodes[i]
+            self.max_heapify(i=largest)
+
+    def build_max_heap(self):
+        """Build a max heap of an array"""
+        i = self.heap_size // 2
+        while i >= 0:
+            self.max_heapify(i)
+            i -= 1
 
 
 if __name__ == '__main__':
