@@ -1,5 +1,9 @@
 from typing import Any
 
+import numpy as np
+
+from max_heap import MaxHeap
+
 
 class Node:
     """A class for BST tree nodes"""
@@ -11,6 +15,24 @@ class Node:
 
     def __str__(self) -> str:
         return f'({self.data})'
+
+    def __gt__(self, other):
+        """Compare two nodes check if first one is greater than second one or not"""
+        if self.data > other.data:
+            return True
+        return False
+
+    def __lt__(self, other):
+        """Compare two nodes check if first one is lower than second one or not"""
+        if self.data < other.data:
+            return True
+        return False
+
+    def __eq__(self, other):
+        """Compare two nodes check if first one is as equal as the second one or not"""
+        if self.data == other.data:
+            return True
+        return False
 
 
 class BinarySearchTree:
