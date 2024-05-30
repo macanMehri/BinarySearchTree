@@ -183,6 +183,27 @@ class BinarySearchTree:
         self.root.left_child = None
         self.root.right_child = None
 
+    def add_to_max_heap(self, count: int):
+        """Take top count the highest numbers of bst and store them to max-heap"""
+        if count <= 0:
+            return
+        maximum = self.tree_maximum(self.root)
+        list_of_top_count = list()
+        list_of_top_count.append(maximum)
+        count -= 1
+        node = maximum
+        while count > 0:
+            next_node = self.tree_predecessor(node=node)
+            list_of_top_count.append(next_node)
+            node = next_node
+            count -= 1
+
+        array_of_top_count = np.array(list_of_top_count)
+
+        heap = MaxHeap(array_of_top_count)
+        heap.build_max_heap()
+        return heap
+
 
 if __name__ == '__main__':
     pass
