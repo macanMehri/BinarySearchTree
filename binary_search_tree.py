@@ -95,7 +95,7 @@ class BinarySearchTree:
         """
         if node is not None:
             self.inorder_tree_walk(node=node.left_child)
-            print(node)
+            print(node, end=' - ')
             self.inorder_tree_walk(node=node.right_child)
 
     @staticmethod
